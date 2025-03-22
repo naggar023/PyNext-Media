@@ -11,7 +11,17 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pynext_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com  # Change this
+      PGADMIN_DEFAULT_PASSWORD: admin  # Change this
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
   backend:
     build: ./backend
     container_name: backend_api
